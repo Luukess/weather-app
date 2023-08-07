@@ -1,14 +1,14 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
-import MainLayout from "../components/main-layout/MainLayout";
+import WrapperLayout from "../components/wrapper-layout/WrapperLayout";
 import "../styles/index.scss";
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <>
-      <MainLayout>
+      <WrapperLayout>
         <p>Works</p>
-      </MainLayout>
+      </WrapperLayout>
     </>
   );
 };
