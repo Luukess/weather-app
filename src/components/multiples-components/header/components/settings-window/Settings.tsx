@@ -10,8 +10,6 @@ import {
 } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import CloseIcon from "@mui/icons-material/Close";
-import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { useState } from "react";
 import { sxSettingsStyles } from "./Settings.style";
 import ThemeSwitch from "../theme-switch-settings/ThemeSwitch";
