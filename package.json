@@ -22,6 +22,7 @@
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.3",
     "@mui/styled-engine-sc": "^5.12.0",
+    "flag-icons": "^6.9.3",
     "gatsby": "^5.11.0",
     "gatsby-plugin-sass": "^6.11.0",
     "react": "^18.2.0",
