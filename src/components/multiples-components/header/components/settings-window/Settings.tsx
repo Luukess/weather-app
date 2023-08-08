@@ -18,18 +18,10 @@ import ThemeSwitch from "../theme-switch-settings/ThemeSwitch";
 
 const Settings: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  //   const [selectedTheme, setSelectedTheme] = useState<string>("light");
 
   const handleOpenSettings = (): void => {
     setIsOpen(true);
   };
-
-  //   const handleSelectTheme = (
-  //     event: React.MouseEvent<HTMLElement>,
-  //     newSelectedTheme: string
-  //   ): void => {
-  //     setSelectedTheme(newSelectedTheme);
-  //   };
 
   return (
     <Box component="div">
