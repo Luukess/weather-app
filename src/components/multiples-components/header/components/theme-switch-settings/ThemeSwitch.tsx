@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Box,
   ToggleButton,
@@ -9,16 +9,34 @@ import {
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { sxThemeSwitchStyles } from "./ThemeSwitch.style";
+import {
+  ThemeContext,
+  contextTypeTheme,
+} from "../../../../../contexts/theme-context/themeContext";
 
 const ThemeSwitch: React.FC = () => {
-  const [selectedTheme, setSelectedTheme] = useState<string>("light");
+  const getThemeFromStorage: string | null = localStorage.getItem("theme");
+  const [selectedTheme, setSelectedTheme] = useState<string>(
+    getThemeFromStorage === null || getThemeFromStorage === "light"
+      ? "light"
+      : JSON.parse(getThemeFromStorage)
+  );
+
+  const themeContextValues: contextTypeTheme | null = useContext(ThemeContext);
 
   const handleSelectTheme = (
     event: React.MouseEvent<HTMLElement>,
     newSelectedTheme: string
   ): void => {
-    setSelectedTheme(newSelectedTheme);
+    if (newSelectedTheme !== null) {
+      setSelectedTheme(newSelectedTheme);
+    }
   };
+
+  useEffect((): void => {
+    localStorage.setItem("theme", JSON.stringify(selectedTheme));
+    themeContextValues?.setIsDarkMode(selectedTheme === "light" ? false : true);
+  }, [selectedTheme]);
 
   return (
     <>
