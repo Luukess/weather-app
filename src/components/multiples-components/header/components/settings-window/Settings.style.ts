@@ -28,7 +28,7 @@ export const sxSettingsStyles: Record<SxName, SystemStyleObject<Theme>> = {
   },
   settingsBody: {
     width: "100%",
-    height: "calc(100vh - 56px)",
+    height: "calc(100vh - 57px)",
     overflow: "auto",
   },
   settingsContainerFeature: {
