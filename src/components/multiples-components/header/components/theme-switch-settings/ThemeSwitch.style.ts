@@ -14,8 +14,11 @@ export const sxThemeSwitchStyles: Record<SxName, SystemStyleObject<Theme>> = {
   themeButtons: {
     textTransform: "none",
     width: "100px",
+    fontSize: "14px",
+    height: "44px",
   },
   buttonsIcons: {
     marginRight: "5px",
+    fontSize: "18px",
   },
 };
