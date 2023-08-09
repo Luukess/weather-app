@@ -1,17 +1,21 @@
 import * as React from "react";
 import { useMemo, useState } from "react";
-import { Box, CssBaseline } from "@mui/material";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { sxWrapperLayout } from "./WrapperLayout.style";
 import Header from "../header/Header";
 import { ThemeContext } from "../../../contexts/theme-context/themeContext";
+import { darkTheme, lightTheme } from "../../../config/theme/theme";
 
 type Props = {
   children?: React.ReactNode;
 };
 
 const WrapperLayout: React.FC<Props> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
-
+  const modeFromStorage = localStorage.getItem("theme");
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    modeFromStorage === "dark" ? true : false
+  );
+  console.log(isDarkMode);
   const themeContextValues = useMemo(
     (): {
       isDarkMode: boolean;
@@ -23,11 +27,15 @@ const WrapperLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <ThemeContext.Provider value={themeContextValues}>
-        <CssBaseline />
-        <Box sx={sxWrapperLayout.mainAppBox}>
-          <Header />
-          {children}
-        </Box>
+        <ThemeProvider
+          theme={!themeContextValues.isDarkMode ? lightTheme : darkTheme}
+        >
+          <CssBaseline />
+          <Box sx={sxWrapperLayout.mainAppBox}>
+            <Header />
+            {children}
+          </Box>
+        </ThemeProvider>
       </ThemeContext.Provider>
     </>
   );

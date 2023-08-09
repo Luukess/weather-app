@@ -17,9 +17,7 @@ import {
 const ThemeSwitch: React.FC = () => {
   const getThemeFromStorage: string | null = localStorage.getItem("theme");
   const [selectedTheme, setSelectedTheme] = useState<string>(
-    getThemeFromStorage === null || getThemeFromStorage === "light"
-      ? "light"
-      : JSON.parse(getThemeFromStorage)
+    getThemeFromStorage === "dark" ? "dark" : "light"
   );
 
   const themeContextValues: contextTypeTheme | null = useContext(ThemeContext);
@@ -34,8 +32,8 @@ const ThemeSwitch: React.FC = () => {
   };
 
   useEffect((): void => {
-    localStorage.setItem("theme", JSON.stringify(selectedTheme));
-    themeContextValues?.setIsDarkMode(selectedTheme === "light" ? false : true);
+    localStorage.setItem("theme", selectedTheme);
+    themeContextValues?.setIsDarkMode(selectedTheme === "dark" ? true : false);
   }, [selectedTheme]);
 
   return (
