@@ -7,9 +7,26 @@ import {
 } from "@mui/material";
 import { sxLngSwitchStyles } from "./LngSwitch.style";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
+import { useTranslation } from "react-i18next";
 
 const LngSwitch: React.FC = () => {
-  const [selectedLng, setSelectedLng] = React.useState<string>("en");
+  const getLngFromStorage = localStorage.getItem("i18nextLng");
+  const [selectedLng, setSelectedLng] = React.useState<string>(
+    getLngFromStorage === "pl" ? "pl" : "en"
+  );
+
+  const { i18n } = useTranslation();
+
+  const handleSelectTheme = (
+    event: React.MouseEvent<HTMLElement>,
+    newSelectedLng: string
+  ): void => {
+    if (newSelectedLng !== null) {
+      setSelectedLng(newSelectedLng);
+      i18n.changeLanguage(newSelectedLng);
+    }
+  };
+
   return (
     <>
       <Typography>Language</Typography>
@@ -19,6 +36,7 @@ const LngSwitch: React.FC = () => {
           exclusive
           aria-label="language-switch"
           value={selectedLng}
+          onChange={handleSelectTheme}
         >
           <ToggleButton value="en" sx={sxLngSwitchStyles.lngButtons}>
             <Box component="span" mr={0.5} className="fi fi-gb"></Box> English

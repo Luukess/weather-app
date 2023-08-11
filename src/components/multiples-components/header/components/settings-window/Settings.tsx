@@ -15,9 +15,12 @@ import { useState } from "react";
 import { sxSettingsStyles } from "./Settings.style";
 import ThemeSwitch from "../theme-switch-settings/ThemeSwitch";
 import LngSwitch from "../lng-switch-settings/LngSwitch";
+import { useTranslation } from "react-i18next";
 
 const Settings: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const { t } = useTranslation();
 
   const handleOpenSettings = (): void => {
     setIsOpen(true);
@@ -48,7 +51,7 @@ const Settings: React.FC = () => {
       >
         <Box component="div" sx={sxSettingsStyles.settingsWindow}>
           <Box component="div" sx={sxSettingsStyles.settingsHeader}>
-            <Typography>Settings</Typography>
+            <Typography>{t("Settings")}</Typography>
             <IconButton onClick={() => setIsOpen(false)}>
               <CloseIcon />
             </IconButton>
