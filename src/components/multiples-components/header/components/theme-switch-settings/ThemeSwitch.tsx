@@ -13,12 +13,15 @@ import {
   ThemeContext,
   contextTypeTheme,
 } from "../../../../../contexts/theme-context/themeContext";
+import { useTranslation } from "react-i18next";
 
 const ThemeSwitch: React.FC = () => {
   const getThemeFromStorage: string | null = localStorage.getItem("theme");
   const [selectedTheme, setSelectedTheme] = useState<string>(
     getThemeFromStorage === "dark" ? "dark" : "light"
   );
+
+  const { t } = useTranslation();
 
   const themeContextValues: contextTypeTheme | null = useContext(ThemeContext);
 
@@ -48,10 +51,12 @@ const ThemeSwitch: React.FC = () => {
           aria-label="theme-platform"
         >
           <ToggleButton sx={sxThemeSwitchStyles.themeButtons} value="light">
-            <WbSunnyOutlinedIcon sx={sxThemeSwitchStyles.buttonsIcons} /> Light
+            <WbSunnyOutlinedIcon sx={sxThemeSwitchStyles.buttonsIcons} />
+            {t("Light")}
           </ToggleButton>
           <ToggleButton sx={sxThemeSwitchStyles.themeButtons} value="dark">
-            <DarkModeOutlinedIcon sx={sxThemeSwitchStyles.buttonsIcons} /> Dark
+            <DarkModeOutlinedIcon sx={sxThemeSwitchStyles.buttonsIcons} />
+            {t("Dark")}
           </ToggleButton>
         </ToggleButtonGroup>
       </Box>
